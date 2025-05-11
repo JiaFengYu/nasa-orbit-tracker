@@ -1,0 +1,21 @@
+[package]
+name = "nasa-orbit-tracker"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# ───── Web ─────
+axum = { version = "0.7", features = ["macros"] }
+# Cargo.toml  (snippet – only the new dep)
+tokio = { version = "1", features = ["full", "rt-multi-thread"] }   # `full` already includes `sync`
+
+# ───── SGP-4 + helpers ─────
+sgp4  = { version = "2.3", features = ["serde", "std"] }   # 👈 turn the std math backend back on
+
+reqwest = { version = "0.11", features = ["json"] }
+
+# ───── Util ─────
+serde        = { version = "1", features = ["derive"] }
+serde_json   = "1"
+chrono       = { version = "0.4", default-features = false, features = ["clock"] }
+anyhow       = "1"
